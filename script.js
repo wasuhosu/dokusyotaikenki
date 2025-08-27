@@ -212,7 +212,7 @@ const DeskChaosAnalyzer = () => {
   };
 
   return (
-    <React.Fragment>
+    <>
       <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
         {!image ? (
           <div className="text-center">
@@ -362,7 +362,7 @@ const DeskChaosAnalyzer = () => {
           </div>
         </div>
       )}
-    </React.Fragment>
+    </>
   );
 };
 
@@ -370,9 +370,11 @@ const App = () => {
     return <DeskChaosAnalyzer />;
 };
 
-// DOMが読み込まれた後にReactアプリを初期化
-document.addEventListener('DOMContentLoaded', () => {
-    const container = document.getElementById('root');
-    const root = ReactDOM.createRoot(container);
-    root.render(<App />);
-});
+
+const rootElement = document.getElementById('root');
+if (rootElement) {
+  const root = ReactDOM.createRoot(rootElement);
+  root.render(<App />);
+} else {
+  console.error('エラー: "root" 要素が見つかりません。');
+}
